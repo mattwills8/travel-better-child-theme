@@ -1,0 +1,6 @@
+/build/
+/node_modules/
+.ftpconfig
+.ftp
+TravelBetter.zip
+config.js
