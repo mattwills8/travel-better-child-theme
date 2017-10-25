@@ -1,0 +1,16 @@
+$underlineSrcURL: "#{$stylesheetDirURI}/assets/img/underline-small.png";
+$catSeparatorSrcURL: "#{$stylesheetDirURI}/assets/img/cat-separator.png";
+
+.cat > a.penci-cat-name::after {
+
+  content: url($catSeparatorSrcURL);
+}
+
+.grid-header-box::after {
+
+  position: absolute;
+  left: 25%;
+  bottom: 10px;
+  content: url($underlineSrcURL);
+  background-color: transparent !important;
+}

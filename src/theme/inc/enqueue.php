@@ -1,4 +1,4 @@
-travelBetter<?php
+<?php
 
 function travelBetter_theme_style() {
 

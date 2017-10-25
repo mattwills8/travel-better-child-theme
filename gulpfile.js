@@ -1,7 +1,7 @@
 // Gulp.js configuration
 'use strict';
 
-import Config from './config.js';
+const Config = require('./config.js');
 
 
 /*
