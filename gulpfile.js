@@ -14,7 +14,7 @@ const
 
     themeName           = 'TravelBetter',
     MAMPDirectoryName   = 'Travel Better',
-    FTPDirectoryPath    = `htdocs/wp-content/themes/${themeName}/`
+    FTPDirectoryPath    = Config.ftp.dirPath
 ;
 
 
@@ -130,7 +130,7 @@ const FTP = {
     directoryPath       : FTPDirectoryPath,
     src                 : dir.build + '**/*',
     base                : dir.build,
-    serverTzDifference  : 0
+    serverTzDifference  : 6
 };
 
 
