@@ -53,14 +53,58 @@ class Travel_Better_Admin {
  			'params'      => array(
  				array(
  					'type'        => 'textfield',
- 					'heading'     => 'Heading Text',
+ 					'heading'     => __( 'Heading Text', 'soledad' ),
  					'param_name'  => 'heading',
  					'description' => '',
  				),
  			)
  		) );
 
-		// Latest Posts
+
+		// Full Screen Featured Image
+		vc_map( array(
+			'name'        => __( 'Full Screen Featured Image', 'soledad' ),
+			'description' => __( 'Full screen featured image with space for image and text', 'soledad' ),
+			'base'        => 'travel_better_full_screen_featured_image',
+			'class'       => '',
+			'controls'    => 'full',
+			'icon'        => $this->iconPath,
+			'category'    => 'Travel Better',
+			'params' => array(
+					array(
+							"type" => "attach_image",
+							"heading" => __('Upload a logo', 'soledad' ),
+							"param_name" => "logo"
+					),
+					array(
+							'type' => 'textfield',
+							'heading' => __( 'Blurb Text', 'soledad' ),
+							'param_name' => 'blurb_text',
+							'value' => 'We are'
+					),
+					array(
+							"type" => "attach_image",
+							"heading" => __('Upload a background image', 'soledad' ),
+							"param_name" => "full_screen_featured_image"
+					)
+			)
+		) );
+
+		// Featured Boxes
+    vc_map( array(
+			'name'        => __( 'Featured Boxes', 'soledad' ),
+			'description' => __( 'The Featured Boxes as a VC element - details still controlled in customizer', 'soledad' ),
+			'base'        => 'travel_better_featured_boxes',
+			'class'       => '',
+			'controls'    => 'full',
+			'icon'        => $this->iconPath,
+			'category'    => 'Travel Better',
+			'params'      => array(
+			)
+		) );
+
+
+		// Category Mixed Layout Posts
 		vc_map( array(
 			'name'        => __( 'Category - "Mixed" Layout', 'soledad' ),
 			'description' => __( 'Latest posts from chosen category with "mixed" layout', 'soledad' ),
@@ -79,12 +123,13 @@ class Travel_Better_Admin {
 				),
 				array(
 					'type'        => 'textfield',
-					'heading'     => 'Number Posts',
+					'heading'     => __( 'Number Posts', 'soledad' ),
 					'param_name'  => 'number',
 					'description' => 'Fill the number posts you want here',
 				),
 			)
 		) );
+
 
     // Penci Slider
     vc_map( array(
@@ -96,25 +141,6 @@ class Travel_Better_Admin {
 			'icon'        => $this->iconPath,
 			'category'    => 'Travel Better',
 			'params'      => array(
-				array(
-					'type'        => 'textfield',
-					'heading'     => 'Heading Title',
-					'param_name'  => 'heading',
-					'description' => '',
-				),
-        array(
-					'type'        => 'dropdown',
-					'heading'     => __( 'Select Category', 'soledad' ),
-					'value'       => self::get_terms( 'category' ),
-					'param_name'  => 'category',
-					'description' => 'Select Featured Category',
-				),
-				array(
-					'type'        => 'textfield',
-					'heading'     => 'Number Posts',
-					'param_name'  => 'number',
-					'description' => 'Fill the number posts you want here',
-				),
 			)
 		) );
 	}
@@ -168,6 +194,8 @@ class Travel_Better_Shortcodes {
 	public static function init() {
 		$shortcodes = array(
 			'latest_posts_categories_mixed_layout',
+			'travel_better_full_screen_featured_image',
+			'travel_better_featured_boxes',
       'travel_better_penci_slider',
 			'travel_better_header'
 		);
@@ -218,6 +246,95 @@ class Travel_Better_Shortcodes {
 
     return $return;
   }
+
+
+	/**
+	 * Retrieve HTML markup of travel_better_full_screen_featured_image shortcode
+	 *
+	 * @param array  $atts
+	 * @param string $content
+	 *
+	 * @return string
+   */
+	public static function travel_better_full_screen_featured_image( $atts, $content = null ) {
+
+		extract( shortcode_atts( array(
+			'logo' 											 => '',
+			'blurb_text'								 => '',
+			'full_screen_featured_image' => '',
+		), $atts ) );
+
+		$full_screen_featured_image_src = wp_get_attachment_image_src($full_screen_featured_image, "full")[0];
+		$logo_src = wp_get_attachment_image_src($logo, "full")[0];
+
+		$return = '';
+
+    // start element markup
+    ob_start();
+		?>
+
+		<div class="full-screen-featured-image-wrapper">
+
+			<img src="<?php echo $full_screen_featured_image_src; ?>">
+
+			<div class="full-screen-featured-image-content-wrapper">
+				<div class="full-screen-featured-image-logo-wrapper">
+					<img src="<?php echo $logo_src; ?>">
+				</div>
+
+				<div class="full-screen-featured-image-blurb-wrapper">
+					<div class="line-before-blurb"></div>
+					<span><?php echo $blurb_text; ?></span>
+					<div class="line-after-blurb"></div>
+				</div>
+			</div>
+
+		</div>
+
+		<?php
+		// end element markup
+		$return = ob_get_clean();
+
+		return $return;
+	}
+
+
+
+	/**
+	 * Retrieve HTML markup of travel_better_featured_boxes shortcode
+	 *
+	 * @param array  $atts
+	 * @param string $content
+	 *
+	 * @return string
+   */
+	public static function travel_better_featured_boxes( $atts, $content = null ) {
+
+
+		$return = '';
+
+    // start element markup
+    ob_start();
+		?>
+
+		<div class="tb-vc-featured-boxes">
+
+		<?php
+		/* Display Featured Boxes */
+		if ( ( get_theme_mod( 'penci_home_box_img1' ) || get_theme_mod( 'penci_home_box_img2' ) || get_theme_mod( 'penci_home_box_img3' ) || get_theme_mod( 'penci_home_box_img4' ) ) ):
+			get_template_part( 'inc/modules/home_boxes' );
+		endif;
+		?>
+
+		</div>
+
+		<?php
+		// end element markup
+		$return = ob_get_clean();
+
+		return $return;
+	}
+
 
 
 	/**
