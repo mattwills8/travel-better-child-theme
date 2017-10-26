@@ -1,6 +1,6 @@
 $catSeparatorSrcURL: "#{$stylesheetDirURI}/assets/img/cat-separator.png";
 
-.cat {
+.penci-grid .cat a.penci-cat-name, .penci-masonry .cat a.penci-cat-name {
   color: $primaryColor !important;
 }
 
