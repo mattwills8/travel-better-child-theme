@@ -1,0 +1,15 @@
+
+.header-logo-wrapper {
+
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: -10px;
+  width: 100px;
+}
+
+@media screen and (max-width: 960px) {
+  .header-logo-wrapper {
+    display: none;
+  }
+}

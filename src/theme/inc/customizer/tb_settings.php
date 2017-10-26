@@ -22,9 +22,13 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	 * @package Wordpress
 	 */
 
-	$wp_customize->add_setting( 'travel_better_featured_boxes_number', array(
-		'default'           => 3,
-	) );
+	$wp_customize->add_setting( 'travel_better_logo_in_header', array(
+ 		'default'           => 'yes',
+ 	) );
+
+	$wp_customize->add_setting( 'travel_better_upload_header_logo', array(
+ 		'default'           => '',
+ 	) );
 
 	$wp_customize->add_setting( 'travel_better_remove_soledad_header_home', array(
 		'default'           => 'yes',
@@ -34,6 +38,10 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'default'           => 'yes',
 	) );
 
+	$wp_customize->add_setting( 'travel_better_featured_boxes_number', array(
+		'default'           => 3,
+	) );
+
 
   /**
 	 * Add Controls
@@ -41,12 +49,22 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	 * @package Wordpress
 	 */
 
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_featured_boxes_number', array(
-		'label'    => 'Number of Featured Boxes',
-    'description'  => 'Choose 3 or 4 - Requires Home Featured Boxes Style 3 to be selected',
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_logo_in_header', array(
+ 		'label'    => 'Display Logo In Header?',
+ 		'section'  => 'travel_better_new_section_extra_settings',
+ 		'settings' => 'travel_better_logo_in_header',
+ 		'type'     => 'radio',
+ 		'choices'  => array(
+         'yes'   => __( 'Yes' ),
+         'no'  => __( 'No' )
+     ),
+ 		'priority' => 1
+ 	)));
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'travel_better_upload_header_logo', array(
+		'label'    => 'Upload Logo For Header',
 		'section'  => 'travel_better_new_section_extra_settings',
-		'settings' => 'travel_better_featured_boxes_number',
-		'type'     => 'number',
+		'settings' => 'travel_better_upload_header_logo',
 		'priority' => 1
 	) ) );
 
@@ -75,6 +93,15 @@ function travel_better_register_theme_customizer( $wp_customize ) {
     ),
 		'priority' => 3
 	)));
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_featured_boxes_number', array(
+		'label'    => 'Number of Featured Boxes',
+    'description'  => 'Choose 3 or 4 - Requires Home Featured Boxes Style 3 to be selected',
+		'section'  => 'travel_better_new_section_extra_settings',
+		'settings' => 'travel_better_featured_boxes_number',
+		'type'     => 'number',
+		'priority' => 10
+	) ) );
 }
 
 /**

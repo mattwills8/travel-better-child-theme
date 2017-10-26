@@ -34,12 +34,15 @@
  */
 $header_layout = get_theme_mod( 'penci_header_layout' );
 
-
+// get customizer setting for showing or hiding soledad header elements
 $tb_show_header_elements = get_theme_mod( 'travel_better_remove_soledad_header' ) === 'no';
-
 if( is_front_page() ) {
 	$tb_show_header_elements = get_theme_mod( 'travel_better_remove_soledad_header_home' ) === 'no';
 }
+
+// get customizer setting for showing logo in header
+$show_logo_in_header = get_theme_mod( 'travel_better_logo_in_header' ) === 'yes';
+$tb_header_logo_src = get_theme_mod( 'travel_better_upload_header_logo' );
 
 
 $menu_style = get_theme_mod( 'penci_header_menu_style' ) ? get_theme_mod( 'penci_header_menu_style' ) : 'menu-style-1';
@@ -116,6 +119,18 @@ if( $tb_show_header_elements ) { // hide these elmements?
 <nav id="navigation" class="header-layout-top <?php echo esc_attr( $menu_style . ' ' . $header_class ); ?><?php if( get_theme_mod( 'penci_header_enable_padding' ) ): echo ' menu-item-padding'; endif; ?><?php if( get_theme_mod( 'penci_disable_sticky_header' ) ): echo ' penci-disable-sticky-nav';
 endif; /* Check for disable sticky header */ ?>">
 	<div class="container">
+
+		<?php
+
+		/*
+		* Add logo
+		*/
+		?>
+		<div class="header-logo-wrapper">
+			<img src="<?php echo $tb_header_logo_src; ?>">
+		</div>
+
+
 		<div class="button-menu-mobile <?php echo esc_attr( $header_layout ); ?>"><i class="fa fa-bars"></i></div>
 		<?php
 		/**
@@ -249,6 +264,20 @@ endif; /* Check for disable sticky header */ ?>">
 		<!-- Navigation -->
 		<nav id="navigation" class="header-layout-bottom <?php echo esc_attr( $menu_style . ' ' . $header_class ); ?><?php if( get_theme_mod( 'penci_header_enable_padding' ) ): echo ' menu-item-padding'; endif; ?><?php if( get_theme_mod( 'penci_disable_sticky_header' ) ): echo ' penci-disable-sticky-nav'; endif; /* Check for disable sticky header */ ?>">
 			<div class="container">
+
+				<?php
+				/*
+				* Add logo
+				*/
+				if( $show_logo_in_header && $tb_header_logo_src ) { ?>
+
+					<div class="header-logo-wrapper">
+						<img src="<?php echo $tb_header_logo_src; ?>">
+					<div>
+
+				<?php } ?>
+
+
 				<div class="button-menu-mobile <?php echo esc_attr( $header_layout ); ?>"><i class="fa fa-bars"></i></div>
 				<?php if ( $header_layout == 'header-6' || $header_layout == 'header-9' ): ?>
 					<div id="logo">
