@@ -42,6 +42,14 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'default'           => 3,
 	) );
 
+	$wp_customize->add_setting( 'travel_better_footer_background', array(
+		'default'           => 'yes',
+	) );
+
+	$wp_customize->add_setting( 'travel_better_upload_footer_background', array(
+		'default'           => '',
+	) );
+
 
   /**
 	 * Add Controls
@@ -101,6 +109,14 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'settings' => 'travel_better_featured_boxes_number',
 		'type'     => 'number',
 		'priority' => 10
+	) ) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'travel_better_upload_footer_background', array(
+		'label'    => 'Upload Image For Footer Background',
+		'description'  => 'Leave blank to revert to soledad default',
+		'section'  => 'travel_better_new_section_extra_settings',
+		'settings' => 'travel_better_upload_footer_background',
+		'priority' => 101
 	) ) );
 }
 

@@ -1,0 +1,31 @@
+
+.footer-background-enabled {
+
+  background-size: cover;
+  background-position: top;
+
+  .footer-subscribe, #footer-section {
+    background: transparent;
+  }
+
+  .footer-subscribe {
+
+    .mc4wp-form {
+
+      .msubmit input[type="submit"] {
+        background-color: $primaryColor;
+      }
+    }
+  }
+
+  #footer-section {
+
+    span, i, p, a {
+      color: white !important;
+    }
+
+    .footer-socials-section {
+      border: none;
+    }
+  }
+}
