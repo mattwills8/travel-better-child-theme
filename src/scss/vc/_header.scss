@@ -1,0 +1,35 @@
+
+.tb-vc-header {
+
+  width: 100%;
+
+  h1, .tb-vc-header-underline-wrapper {
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+    color: $primaryColor;
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  .tb-vc-header-underline-wrapper {
+    margin: {
+      top: 10px;
+      bottom: 40px;
+    }
+    text-align: center;
+
+    div {
+      width: 20%;
+      min-width: 200px;
+      @extend %centerElement;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+}

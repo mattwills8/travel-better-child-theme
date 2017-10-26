@@ -1,4 +1,4 @@
-$underlineSrcURL: "#{$stylesheetDirURI}/assets/img/underline-small.png";
+$underlineSmallSrcURL: "#{$stylesheetDirURI}/assets/img/underline-small.png";
 $catSeparatorSrcURL: "#{$stylesheetDirURI}/assets/img/cat-separator.png";
 
 .cat > a.penci-cat-name::after {
@@ -11,6 +11,6 @@ $catSeparatorSrcURL: "#{$stylesheetDirURI}/assets/img/cat-separator.png";
   position: absolute;
   left: 25%;
   bottom: 10px;
-  content: url($underlineSrcURL);
+  content: url($underlineSmallSrcURL);
   background-color: transparent !important;
 }

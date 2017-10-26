@@ -193,7 +193,7 @@ class Travel_Better_Shortcodes {
 			'heading' => '',
 		), $atts ) );
 
-		$underline_src = get_stylesheet_directory_uri() . '/assets/img/underline.png';
+		$underline_src = get_stylesheet_directory_uri() . '/assets/img/underline-title.png';
 
 		$return = '';
 
@@ -201,10 +201,16 @@ class Travel_Better_Shortcodes {
     ob_start();
 		?>
 
-		<h1><?php echo $heading;?></h1>
+		<div class="tb-vc-header">
 
-		<div>
-			<img src="<?php echo $underline_src; ?>">
+			<h1><?php echo $heading;?></h1>
+
+			<div class="tb-vc-header-underline-wrapper">
+				<div>
+					<img src="<?php echo $underline_src; ?>">
+				</div>
+			</div>
+
 		</div>
 
 		<?php
