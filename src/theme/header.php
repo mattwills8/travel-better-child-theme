@@ -127,7 +127,9 @@ endif; /* Check for disable sticky header */ ?>">
 		*/
 		?>
 		<div class="header-logo-wrapper">
-			<img src="<?php echo $tb_header_logo_src; ?>">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<img src="<?php echo esc_url( $tb_header_logo_src ); ?>">
+			</a>
 		</div>
 
 
