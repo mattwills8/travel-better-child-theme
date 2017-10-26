@@ -26,6 +26,14 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'default'           => 3,
 	) );
 
+	$wp_customize->add_setting( 'travel_better_remove_soledad_header_home', array(
+		'default'           => 'yes',
+	) );
+
+	$wp_customize->add_setting( 'travel_better_remove_soledad_header', array(
+		'default'           => 'yes',
+	) );
+
 
   /**
 	 * Add Controls
@@ -41,6 +49,32 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'type'     => 'number',
 		'priority' => 1
 	) ) );
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_remove_soledad_header_home', array(
+		'label'    => 'Remove Soledad Header Elements on Home Page',
+    'description'  => 'Check yes to remove any header elements put between the nav bar and content by soledad on the homepage - allows for full screen home featured image',
+		'section'  => 'travel_better_new_section_extra_settings',
+		'settings' => 'travel_better_remove_soledad_header_home',
+		'type'     => 'radio',
+		'choices'  => array(
+        'yes'   => __( 'Yes' ),
+        'no'  => __( 'No' )
+    ),
+		'priority' => 2
+	)));
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_remove_soledad_header', array(
+		'label'    => 'Remove Soledad Header Elements on Other Page',
+    'description'  => 'Check yes to remove any header elements put between the nav bar and content by soledad on all other pages',
+		'section'  => 'travel_better_new_section_extra_settings',
+		'settings' => 'travel_better_remove_soledad_header',
+		'type'     => 'radio',
+		'choices'  => array(
+        'yes'   => __( 'Yes' ),
+        'no'  => __( 'No' )
+    ),
+		'priority' => 3
+	)));
 }
 
 /**
