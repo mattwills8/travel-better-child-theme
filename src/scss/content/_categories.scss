@@ -1,0 +1,15 @@
+$catSeparatorSrcURL: "#{$stylesheetDirURI}/assets/img/cat-separator.png";
+
+.cat {
+  color: $primaryColor !important;
+}
+
+.cat > a.penci-cat-name::after {
+
+  content: url($catSeparatorSrcURL);
+  top: 25%;
+  right: 2px;
+  bottom: 0px;
+  border: none;
+  transform: unset;
+}
