@@ -15,6 +15,10 @@
       .msubmit input[type="submit"] {
         background-color: $primaryColor;
       }
+
+      input[type="email"] {
+        background-color: rgba(240,240,240,0.4);
+      }
     }
   }
 

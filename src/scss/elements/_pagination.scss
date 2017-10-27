@@ -1,0 +1,9 @@
+
+.penci-pagination ul.page-numbers li span.current, #comments_pagination span {
+  background: $primaryColor !important;
+  border-color: $primaryColor !important;
+}
+
+.penci-pagination ul.page-numbers li span, .penci-pagination ul.page-numbers li a, #comments_pagination span, #comments_pagination a {
+  color: $primaryColor;
+}
