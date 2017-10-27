@@ -22,10 +22,6 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	 * @package Wordpress
 	 */
 
-	$wp_customize->add_setting( 'travel_better_logo_in_header', array(
- 		'default'           => 'yes',
- 	) );
-
 	$wp_customize->add_setting( 'travel_better_upload_header_logo', array(
  		'default'           => '',
  	) );
@@ -42,10 +38,6 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'default'           => 3,
 	) );
 
-	$wp_customize->add_setting( 'travel_better_footer_background', array(
-		'default'           => 'yes',
-	) );
-
 	$wp_customize->add_setting( 'travel_better_upload_footer_background', array(
 		'default'           => '',
 	) );
@@ -56,18 +48,6 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	 *
 	 * @package Wordpress
 	 */
-
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_logo_in_header', array(
- 		'label'    => 'Display Logo In Header?',
- 		'section'  => 'travel_better_new_section_extra_settings',
- 		'settings' => 'travel_better_logo_in_header',
- 		'type'     => 'radio',
- 		'choices'  => array(
-         'yes'   => __( 'Yes' ),
-         'no'  => __( 'No' )
-     ),
- 		'priority' => 1
- 	)));
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'travel_better_upload_header_logo', array(
 		'label'    => 'Upload Logo For Header',

@@ -41,8 +41,8 @@ if( is_front_page() ) {
 }
 
 // get customizer setting for showing logo in header
-$show_logo_in_header = get_theme_mod( 'travel_better_logo_in_header' ) === 'yes';
 $tb_header_logo_src = get_theme_mod( 'travel_better_upload_header_logo' );
+$is_tb_header_set = $tb_header_logo_src !== '';
 
 
 $menu_style = get_theme_mod( 'penci_header_menu_style' ) ? get_theme_mod( 'penci_header_menu_style' ) : 'menu-style-1';
@@ -125,13 +125,17 @@ endif; /* Check for disable sticky header */ ?>">
 		/*
 		* Add logo
 		*/
+		if( $is_tb_header_set ) :
 		?>
+
 		<div class="header-logo-wrapper">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<img src="<?php echo esc_url( $tb_header_logo_src ); ?>">
 			</a>
 		</div>
 
+		<?php endif; ?>
+		
 
 		<div class="button-menu-mobile <?php echo esc_attr( $header_layout ); ?>"><i class="fa fa-bars"></i></div>
 		<?php

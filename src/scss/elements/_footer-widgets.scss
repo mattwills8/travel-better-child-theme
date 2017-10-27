@@ -1,0 +1,23 @@
+$underlineReverseSrcURL: "#{$stylesheetDirURI}/assets/img/underline-reverse.png";
+
+.footer-widget-wrapper .widget .widget-title .inner-arrow {
+  border: none;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: -5px;
+    left: -2%;
+    height: 10px;
+    width: 100%;
+    background-image: url($underlineReverseSrcURL);
+    background-size: cover;
+    background-position: right;
+
+    @media screen and (max-width: 960px) {
+      bottom: -15px;
+      height: 20px;
+    }
+  }
+}
