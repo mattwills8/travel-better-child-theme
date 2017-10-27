@@ -20,7 +20,7 @@ class Travel_Better_Admin {
 		add_action( 'init', array( $this, 'integrate' ) );
 
     //set class vars
-    $this->iconPath = get_template_directory_uri() . '/images/vc-icon.png';
+    $this->iconPath = get_stylesheet_directory_uri() . '/assets/img/tb-vc-icon.png';
 	}
 
 	/**
