@@ -99,19 +99,9 @@ if( $header_layout == 'header-9' ) {
 
 
 <!-- Top Bar -->
-
-
-<?php
-if( $tb_show_header_elements ) { // hide these elmements?
-?>
-
-
 <?php if( get_theme_mod( 'penci_top_bar_show' ) ): ?>
 	<?php get_template_part( 'inc/modules/topbar' ); ?>
 <?php endif; ?>
-
-
-<?php } // end hide  ?>
 
 
 <?php if ( in_array( $header_layout, array( 'header-1', 'header-4', 'header-7' ) ) ) : ?>
@@ -135,7 +125,7 @@ endif; /* Check for disable sticky header */ ?>">
 		</div>
 
 		<?php endif; ?>
-		
+
 
 		<div class="button-menu-mobile <?php echo esc_attr( $header_layout ); ?>"><i class="fa fa-bars"></i></div>
 		<?php
