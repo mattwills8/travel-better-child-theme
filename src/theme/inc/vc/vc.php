@@ -103,6 +103,97 @@ class Travel_Better_Admin {
 			)
 		) );
 
+		// Latest Posts
+		vc_map( array(
+			'name'        => __( 'N Latest Posts - Starting From X', 'soledad' ),
+			'description' => 'Display your latest posts starting from a certain number back',
+			'base'        => 'latest_posts_start_from_x',
+			'class'       => '',
+			'controls'    => 'full',
+			'icon'        => $this->iconPath,
+			'category'    => 'Travel Better',
+			'params'      => array(
+				array(
+					'type'        => 'textfield',
+					'heading'     => 'Heading Title for Latest Posts',
+					'param_name'  => 'heading',
+					'description' => '',
+				),
+				array(
+					'type'        => 'dropdown',
+					'heading'     => __( 'Latest Posts Layout', 'soledad' ),
+					'value'       => array(
+						'Standard Posts'                   => 'standard',
+						'Classic Posts'                    => 'classic',
+						'Overlay Posts'                    => 'overlay',
+						'Grid Posts'                       => 'grid',
+						'Grid 2 Columns Posts'             => 'grid-2',
+						'Grid Masonry Posts'               => 'masonry',
+						'Grid Masonry 2 Columns Posts'     => 'masonry-2',
+						'List Posts'                       => 'list',
+						'Boxed Posts Style 1'              => 'boxed-1',
+						'Boxed Posts Style 2'              => 'boxed-2',
+						'Mixed Posts'                      => 'mixed',
+						'Mixed Posts Style 2'              => 'mixed-2',
+						'Photography Posts'                => 'photography',
+						'1st Standard Then Grid'           => 'standard-grid',
+						'1st Standard Then Grid 2 Columns' => 'standard-grid-2',
+						'1st Standard Then List'           => 'standard-list',
+						'1st Standard Then Boxed'          => 'standard-boxed-1',
+						'1st Classic Then Grid'            => 'classic-grid',
+						'1st Classic Then Grid 2 Columns'  => 'classic-grid-2',
+						'1st Classic Then List'            => 'classic-list',
+						'1st Classic Then Boxed'           => 'classic-boxed-1',
+						'1st Overlay Then Grid'            => 'overlay-grid',
+						'1st Overlay Then List'            => 'overlay-list'
+					),
+					'param_name'  => 'style',
+					'description' => 'Select Latest Posts Style',
+				),
+				array(
+					'type'        => 'textfield',
+					'heading'     => 'Total Number To Load',
+					'param_name'  => 'total_number',
+					'description' => 'The total number of posts across all pages - leave blank to get all posts',
+				),
+				array(
+					'type'        => 'textfield',
+					'heading'     => 'Number Of Posts To Skip',
+					'param_name'  => 'start_from',
+					'description' => 'Eg, if 4, skips the 4 most recent posts and starts from the 5th',
+				),
+				array(
+					'type'        => 'textfield',
+					'heading'     => 'Number Posts Per Page',
+					'param_name'  => 'number',
+					'description' => 'Fill the number posts per page you want here',
+				),
+				array(
+					'type'        => 'dropdown',
+					'heading'     => __('Page Navigation Style', 'soledad'),
+					'value'       => array(
+						'Page Navigation Numbers' => 'numbers',
+						'Load More Posts'         => 'loadmore',
+						'Infinite Scroll'         => 'scroll'
+					),
+					'param_name'  => 'paging',
+					'description' => 'Select Page Navigation Style',
+				),
+				array(
+					'type'        => 'textfield',
+					'heading'     => 'Custom Number Posts for Each Time Load More Posts',
+					'param_name'  => 'morenum',
+					'description' => 'Fill the number posts for each time load more posts here - this option use for load more posts navigation',
+				),
+				array(
+					'type'        => 'textfield',
+					'heading'     => 'Exclude Categories',
+					'param_name'  => 'exclude',
+					'description' => 'If you want to exclude any categories, fill the categories slug here. See <a href="http://pencidesign.com/soledad/soledad-document/assets/images/magazine-2.png" target="_blank">here</a> to know what is category slug. Example: travel, life-style',
+				)
+			)
+		) );
+
 
 		// Category Mixed Layout Posts
 		vc_map( array(
@@ -196,6 +287,7 @@ class Travel_Better_Shortcodes {
 			'latest_posts_categories_mixed_layout',
 			'travel_better_full_screen_featured_image',
 			'travel_better_featured_boxes',
+			'latest_posts_start_from_x',
       'travel_better_penci_slider',
 			'travel_better_header'
 		);
@@ -330,6 +422,171 @@ class Travel_Better_Shortcodes {
 
 		<?php
 		// end element markup
+		$return = ob_get_clean();
+
+		return $return;
+	}
+
+
+
+	/**
+	 * Retrieve HTML markup of latest_posts_start_from_x shortcode
+	 *
+	 * @param array  $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function latest_posts_start_from_x( $atts, $content = null ) {
+		extract(shortcode_atts(array(
+			'style'   => 'standard',
+			'heading' => '',
+			'total_number' => false,
+			'start_from'	=> 0,
+			'number'  => '4',
+			'paging'  => 'numbers',
+			'morenum' => '6',
+			'exclude' => ''
+		), $atts));
+
+		$return = '';
+
+		if ( ! isset( $total_number ) || ! is_numeric( $total_number) ): $total_number = false; endif;
+		if ( ! isset( $start_from ) || ! is_numeric( $start_from ) ): $start_from = 0; endif;
+		if ( ! isset( $number ) || ! is_numeric( $number ) ): $number = '10'; endif;
+		if ( ! isset( $morenum ) || ! is_numeric( $morenum ) ): $morenum = '6'; endif;
+		$paged = max( get_query_var( 'paged' ), get_query_var( 'page' ), 1 );
+
+		$args  = array( 'post_type' => 'post', 'paged' => $paged, 'posts_per_page' => $number );
+
+		if ( ! empty( $exclude ) ):
+			$exclude_cats      = str_replace( ' ', '', $exclude );
+			$exclude_array     = explode( ',', $exclude_cats );
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'category',
+					'field'    => 'slug',
+					'terms'    => $exclude_array,
+					'operator' => 'NOT IN'
+				)
+			);
+		endif;
+
+		$query_initial = new WP_Query( $args );
+		if ( $query_initial->have_posts() ) :
+
+			// get post ids to exclude
+			$exclude_ids = [];
+			$include_ids = [];
+			$i = 0;
+
+			while ($i < $start_from) {
+				$exclude_ids[] = $query_initial->posts[$i]->ID;
+				$i++;
+			}
+
+			while ($total_number && $i < ($start_from + $total_number)) {
+				$include_ids[] = $query_initial->posts[$i]->ID;
+				$i++;
+			}
+
+			// make new query with excluded ids and fixed number of posts
+			$args['post__not_in'] = $exclude_ids;
+
+			if( $total_number ) {
+				$args['post__in'] = $include_ids;
+			}
+
+
+			$query_custom = new WP_Query( $args );
+
+			if ( $query_custom->have_posts() ) :
+
+				ob_start();
+
+				?>
+
+				<?php if ( $heading ) : ?>
+				<?php
+				$heading_title = get_theme_mod( 'penci_featured_cat_style' ) ? get_theme_mod( 'penci_featured_cat_style' ) : 'style-1';
+				$heading_align = get_theme_mod( 'penci_heading_latest_align' ) ? get_theme_mod( 'penci_heading_latest_align' ) : 'pcalign-center';
+				?>
+					<div class="penci-border-arrow penci-homepage-title penci-home-latest-posts <?php echo sanitize_text_field( $heading_title . ' ' . $heading_align ); ?>">
+						<h3 class="inner-arrow"><?php echo do_shortcode( $heading ); ?></h3>
+					</div>
+				<?php endif; ?>
+
+				<div class="penci-wrapper-posts-content">
+
+					<?php if( in_array( $style, array( 'standard', 'classic', 'overlay' ) ) ): ?><div class="penci-wrapper-data"><?php endif; ?>
+					<?php if ( in_array( $style, array( 'mixed', 'mixed-2', 'overlay-grid', 'overlay-list', 'photography', 'grid', 'grid-2', 'list', 'boxed-1', 'boxed-2', 'boxed-3', 'standard-grid', 'standard-grid-2', 'standard-list', 'standard-boxed-1', 'classic-grid', 'classic-grid-2', 'classic-list', 'classic-boxed-1', 'magazine-1', 'magazine-2' ) ) ) : ?><ul class="penci-wrapper-data penci-grid penci-shortcode-render"><?php endif; ?>
+					<?php if ( in_array( $style, array( 'masonry', 'masonry-2' ) ) ) : ?><div class="penci-wrap-masonry"><div class="penci-wrapper-data masonry penci-masonry"><?php endif; ?>
+
+					<?php /* The loop */
+					while ( $query_custom->have_posts() ) : $query_custom->the_post();
+						include( locate_template( 'content-' . $style . '.php' ) );
+					endwhile;
+					?>
+
+					<?php if( in_array( $style, array( 'standard', 'classic', 'overlay' ) ) ): ?></div><?php endif; ?>
+					<?php if ( in_array( $style, array( 'masonry', 'masonry-2' ) ) ) : ?></div></div><?php endif; ?>
+					<?php if ( in_array( $style, array( 'mixed', 'mixed-2', 'overlay-grid', 'overlay-list', 'photography', 'grid', 'grid-2', 'list', 'boxed-1', 'boxed-2', 'boxed-3', 'standard-grid', 'standard-grid-2', 'standard-list', 'standard-boxed-1', 'classic-grid', 'classic-grid-2', 'classic-list', 'classic-boxed-1', 'magazine-1', 'magazine-2' ) ) ) : ?></ul><?php endif; ?>
+
+
+					<?php
+					if( $paging == 'loadmore' || $paging == 'scroll' ) {
+						$button_class = 'penci-ajax-more penci-ajax-home penci-ajax-more-click';
+						if( $paging == 'loadmore' ):
+							wp_enqueue_script( 'penci_ajax_more_posts' );
+							wp_localize_script( 'penci_ajax_more_posts', 'ajax_var_more', array(
+									'url'     => admin_url( 'admin-ajax.php' ),
+									'nonce'   => wp_create_nonce( 'ajax-nonce' )
+								)
+							);
+						endif;
+						if( $paging == 'scroll' ):
+							$button_class = 'penci-ajax-more penci-ajax-home penci-ajax-more-scroll';
+							wp_enqueue_script( 'penci_ajax_more_scroll' );
+							wp_localize_script( 'penci_ajax_more_scroll', 'ajax_var_more', array(
+									'url'     => admin_url( 'admin-ajax.php' ),
+									'nonce'   => wp_create_nonce( 'ajax-nonce' )
+								)
+							);
+						endif;
+						/* Get data template */
+						$data_layout = $style;
+						$data_template = 'sidebar';
+						if ( in_array( $style, array( 'standard-grid', 'classic-grid', 'overlay-grid' ) ) ) {
+							$data_layout = 'grid';
+						} elseif ( in_array( $style, array( 'standard-grid-2', 'classic-grid-2' ) ) ) {
+							$data_layout = 'grid-2';
+						} elseif ( in_array( $style, array( 'standard-list', 'classic-list', 'overlay-list' ) ) ) {
+							$data_layout = 'list';
+						} elseif ( in_array( $style, array( 'standard-boxed-1', 'classic-boxed-1' ) ) ) {
+							$data_layout = 'boxed-1';
+						}
+
+						if( is_page_template( 'page-vc.php' ) ) {
+							$data_template = 'no-sidebar';
+						}
+						?>
+
+						<div class="penci-pagination <?php echo $button_class; ?>">
+							<a class="penci-ajax-more-button" data-mes="<?php echo penci_get_setting('penci_trans_no_more_posts'); ?>" data-layout="<?php echo esc_attr( $data_layout ); ?>" data-number="<?php echo absint($morenum); ?>" data-offset="<?php echo (absint($number)+absint($start_from)); ?>" data-exclude="<?php
+							echo $exclude; ?>" data-from="vc" data-template="<?php echo $data_template; ?>">
+								<span class="ajax-more-text"><?php echo penci_get_setting('penci_trans_load_more_posts'); ?></span><span class="ajaxdot"></span><i class="fa fa-refresh"></i>
+							</a>
+						</div>
+					<?php } else { ?>
+					<?php echo penci_pagination_numbers( $query_custom ); ?>
+					<?php } ?>
+
+				</div>
+
+			<?php
+			endif;
+		endif; wp_reset_postdata();
+
 		$return = ob_get_clean();
 
 		return $return;
