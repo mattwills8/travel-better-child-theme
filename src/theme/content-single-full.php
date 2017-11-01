@@ -31,7 +31,13 @@
 			<?php endif; ?>
 		</div>
 
+		<!-- SOCIAL ICONS START -->
 		<div class="header-social-icons">
+
+			<div class="header-social-icons-heading">
+				<h2>DEEL DIT ARTIKEL</h2>
+			</div>
+
 			<div class="penci-post-share-box">
 				<?php
 				$twitter_text = 'Check out this article';
@@ -52,6 +58,8 @@
 				<a data-pin-do="none" target="_blank" class="header-social-link" href="<?php echo esc_url( $pinterest_share ); ?>"><i class="fa fa-pinterest"></i><span class="dt-share"><?php esc_html_e( 'Pinterest', 'soledad' ); ?></span></a>
 			</div>
 		</div>
+		<!-- SOCIAL ICONS END -->
+
 	</div>
 <?php endif; /* End check move title bellow featured image */  ?>
 
