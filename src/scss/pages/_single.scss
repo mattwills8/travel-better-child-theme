@@ -1,0 +1,53 @@
+
+.single {
+
+  .header-standard, .post {
+    margin: 25px auto;
+    width: 700px;
+
+    @media screen and (max-width: 960px) {
+      width: auto;
+    }
+  }
+
+  .header-wrapper {
+    position: relative;
+    width: 100%;
+
+    .header-standard{
+      margin-bottom: 20px;
+    }
+
+    .header-social-icons {
+      position: absolute;
+      display: inline-block;
+      right: 0;
+      bottom: 0;
+
+      @media screen and (max-width: 960px) {
+        position: static;
+        margin-bottom: 25px;
+      }
+
+      .header-social-link {
+        position: relative;
+        display: inline-block;
+        margin: 0 4px;
+        border-radius: 50%;
+        padding-top: 6px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        background-color: $primaryColor;
+        color: white;
+
+        .dt-share {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+//TODO: check widths on live site, might need to match on header width with js
