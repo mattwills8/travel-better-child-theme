@@ -26,7 +26,18 @@ class Travel_Better_Shortcodes {
       $return = '';
       // start element markup
       ob_start();
+      ?>
 
+
+      <div class="tb-post-images-wrapper">
+        <div class="tb-post-images-grid">
+          <div class="tb-post-images-box"></div>
+          <div class="tb-post-images-box"></div>
+          <div class="tb-post-images-box"></div>
+        </div>
+      </div>
+
+      <?php
       foreach($url_array as $url) {
         echo '<img src="'.$url.'">';
       }

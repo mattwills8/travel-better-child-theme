@@ -1,0 +1,19 @@
+.tb-post-images-wrapper {
+}
+
+.tb-post-images-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0px;
+  background-color: #fff;
+  color: #444;
+}
+
+.tb-post-images-box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  grid-column: 1;
+}
