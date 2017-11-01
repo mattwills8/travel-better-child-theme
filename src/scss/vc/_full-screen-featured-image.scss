@@ -11,7 +11,7 @@
 
 .full-screen-featured-image-wrapper {
   position: relative;
-  height: 90vh;
+  height: $vhMinusHeader;
 
   img {
     @extend %imgFitContainerWidth;

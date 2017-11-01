@@ -6,7 +6,11 @@
       parent: '.inner-post-entry',
       child: '.tb-fullwidth',
     },
-  ]
+    {
+      parent: '.single .container-single',
+      child: '.post-image',
+    },
+  ];
 
   $(document).ready(function() {
     makeElementsFullWidth(selectorsArray)

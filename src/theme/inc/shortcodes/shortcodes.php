@@ -16,9 +16,9 @@ class Travel_Better_Shortcodes {
 
       $attributes = shortcode_atts( array(
           'img_urls'  => '',
-          'fullwidth' => 'false',
+          'fullwidth' => 'true',
           'columns'   => '1',
-          'row_height' => '90'
+          'row_height' => 'auto'
       ), $args );
 
       $no_whitespaces = preg_replace( '/\s*,\s*/', ',', filter_var( $attributes['img_urls'], FILTER_SANITIZE_STRING ) );

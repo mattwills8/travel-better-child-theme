@@ -12,9 +12,17 @@ $stylesheetDirURI: '//localhost:3000/Travel%20Better/wp-content/themes/TravelBet
 */
 
 $primaryColor: #97c89b;
+$primaryColorHover: #769b79;
 
 
 
 /*
 * FONTS
 */
+
+
+/*
+* LAYOUTS
+*/
+
+$vhMinusHeader: calc(100vh - 90px);
