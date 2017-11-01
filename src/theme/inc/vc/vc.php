@@ -278,7 +278,7 @@ class Travel_Better_Admin {
 new Travel_Better_Admin();
 
 
-class Travel_Better_Shortcodes {
+class Travel_Better_VC_Shortcodes {
 	/**
 	 * Add shortcodes
 	 */
@@ -777,5 +777,5 @@ class Travel_Better_Shortcodes {
 }
 
 if ( ! is_admin() ) {
-	Travel_Better_Shortcodes::init();
+	Travel_Better_VC_Shortcodes::init();
 }
