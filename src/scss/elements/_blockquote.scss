@@ -1,0 +1,16 @@
+blockquote{
+
+  &::before {
+    color: $primaryColor !important;
+  }
+
+  .author {
+    span {
+      color: $primaryColor;
+
+      &::after {
+        background-color: $primaryColor !important;
+      }
+    }
+  }
+}
