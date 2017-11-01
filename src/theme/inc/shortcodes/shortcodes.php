@@ -15,13 +15,16 @@ class Travel_Better_Shortcodes {
    public function post_images_shortcode( $args ) {
 
       $attributes = shortcode_atts( array(
-          'img_urls'  => 'url1, url2',
-          'fullwidth' => 'true',
+          'img_urls'  => '',
+          'fullwidth' => 'false',
           'columns'   => '1',
+          'row_height' => '90'
       ), $args );
 
       $no_whitespaces = preg_replace( '/\s*,\s*/', ',', filter_var( $attributes['img_urls'], FILTER_SANITIZE_STRING ) );
       $url_array = explode( ',', $no_whitespaces );
+
+      $row_height = $attributes['row_height'].'vh';
 
       $return = '';
       // start element markup
@@ -29,18 +32,24 @@ class Travel_Better_Shortcodes {
       ?>
 
 
-      <div class="tb-post-images-wrapper">
-        <div class="tb-post-images-grid">
-          <div class="tb-post-images-box"></div>
-          <div class="tb-post-images-box"></div>
-          <div class="tb-post-images-box"></div>
+      <div class="tb-post-images-wrapper <?php if( $attributes['fullwidth'] === 'true' ) { echo 'tb-fullwidth '; } ?>">
+
+        <div class="tb-post-images-grid" style="<?php echo 'grid-template-columns: repeat('.$attributes['columns'].', 1fr);'?>">
+
+          <?php foreach($url_array as $url) { ?>
+
+
+            <div class="tb-post-images-image" style="<?php echo 'height:'.$row_height.' '; ?>">
+                <img src="<?php echo $url; ?>">
+            </div>
+
+          <?php } ?>
+
         </div>
       </div>
 
       <?php
-      foreach($url_array as $url) {
-        echo '<img src="'.$url.'">';
-      }
+
   		?>
 
   		<?php

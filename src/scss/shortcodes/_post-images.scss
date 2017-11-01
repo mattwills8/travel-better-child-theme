@@ -3,17 +3,26 @@
 
 .tb-post-images-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 5px;
+  padding: 5px;
   background-color: #fff;
   color: #444;
+
+  @media screen and (max-width: 960px) {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
 }
 
-.tb-post-images-box {
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
-  grid-column: 1;
+.tb-post-images-image {
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 960px) {
+    height: unset !important;
+    max-height: 100vh;
+  }
+
+  img {
+    @extend %imgFitContainerWidth;
+  }
 }

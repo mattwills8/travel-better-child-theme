@@ -4,7 +4,7 @@
   var selectorsArray = [
     {
       parent: '.inner-post-entry',
-      child: '.tb-post-images-wrapper',
+      child: '.tb-fullwidth',
     },
   ]
 
