@@ -1,0 +1,16 @@
+
+.tb-simple-btn {
+  margin: 10px;
+  border: none;
+  padding: 10px;
+  background-color: $primaryColor;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85em;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: $primaryColorHover;
+    cursor: pointer;
+  }
+}

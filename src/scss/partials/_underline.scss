@@ -1,0 +1,24 @@
+
+%tb-underline-small-wrapper {
+  @extend %centerElement;
+  width: 30%;
+  min-width: 100px;
+
+  img {
+    object-fit: cover;
+    max-width: 100%;
+  }
+}
+
+%tb-underline-wrapper {
+  width: 70%;
+
+  @media screen and (max-width: 960px) {
+    width: 40%;
+  }
+
+  img {
+    object-fit: cover;
+    max-width: 100%;
+  }
+}
