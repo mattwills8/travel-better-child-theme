@@ -7,6 +7,18 @@
 
 }
 
+ul.homepage-featured-boxes .penci-fea-in h4 span {
+  color: black !important;
+
+  &.boxes-text span {
+    background-color: rgba(240,240,240,0.8);
+  }
+}
+
 ul.homepage-featured-boxes .penci-fea-in:hover h4 span {
-  color: $primaryColor !important;
+  color: black !important;
+
+  &.boxes-text span {
+    background-color: rgba(240,240,240,1);
+  }
 }
