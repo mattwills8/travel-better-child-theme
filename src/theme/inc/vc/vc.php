@@ -72,6 +72,12 @@ class Travel_Better_Admin {
 			'category'    => 'Travel Better',
 			'params' => array(
 					array(
+							'type' => 'textfield',
+							'heading' => __( 'Logo and Blurb Distance From Top (%)', 'soledad' ),
+							'param_name' => 'content_top',
+							'value' => '10'
+					),
+					array(
 							"type" => "attach_image",
 							"heading" => __('Upload a logo', 'soledad' ),
 							"param_name" => "logo"
@@ -351,6 +357,7 @@ class Travel_Better_VC_Shortcodes {
 	public static function travel_better_full_screen_featured_image( $atts, $content = null ) {
 
 		extract( shortcode_atts( array(
+			'content_top'								 => '10',
 			'logo' 											 => '',
 			'blurb_text'								 => '',
 			'full_screen_featured_image' => '',
@@ -358,6 +365,8 @@ class Travel_Better_VC_Shortcodes {
 
 		$full_screen_featured_image_src = wp_get_attachment_image_src($full_screen_featured_image, "full")[0];
 		$logo_src = wp_get_attachment_image_src($logo, "full")[0];
+
+		$content_top_percent = $content_top.'%';
 
 		$return = '';
 
@@ -369,7 +378,7 @@ class Travel_Better_VC_Shortcodes {
 
 			<img src="<?php echo $full_screen_featured_image_src; ?>">
 
-			<div class="full-screen-featured-image-content-wrapper">
+			<div class="full-screen-featured-image-content-wrapper" style="top:<?php echo $content_top_percent; ?>">
 				<div class="full-screen-featured-image-logo-wrapper">
 					<img src="<?php echo $logo_src; ?>">
 				</div>
