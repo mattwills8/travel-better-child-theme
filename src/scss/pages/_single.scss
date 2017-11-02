@@ -74,20 +74,6 @@
   // post entry
 
   .post-entry {
-
-    .inner-post-entry {
-
-      a {
-        border-bottom: 2px solid $primaryColor;
-        font-size: 1.1em;
-        color: inherit;
-
-        &:hover {
-          border-color: $primaryColorHover;
-          text-decoration: none;
-        }
-      }
-    }
   }
 
   // author info

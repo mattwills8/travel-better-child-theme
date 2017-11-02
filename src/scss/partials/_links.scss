@@ -1,0 +1,10 @@
+
+p a {
+  border-bottom: 2px solid $primaryColor;
+  color: inherit !important;
+
+  &:hover {
+    border-color: $primaryColorHover;
+    text-decoration: none !important;
+  }
+}
