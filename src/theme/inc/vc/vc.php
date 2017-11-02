@@ -89,6 +89,12 @@ class Travel_Better_Admin {
 							'value' => 'We are'
 					),
 					array(
+							'type' => 'dropdown',
+							'heading' => __( 'Blurb Font', 'soledad' ),
+							'param_name' => 'blurb_font',
+							'value' => penci_all_fonts()
+					),
+					array(
 							"type" => "attach_image",
 							"heading" => __('Upload a background image', 'soledad' ),
 							"param_name" => "full_screen_featured_image"
@@ -360,6 +366,7 @@ class Travel_Better_VC_Shortcodes {
 			'content_top'								 => '10',
 			'logo' 											 => '',
 			'blurb_text'								 => '',
+			'blurb_font'								 => 'inherit',
 			'full_screen_featured_image' => '',
 		), $atts ) );
 
@@ -367,6 +374,8 @@ class Travel_Better_VC_Shortcodes {
 		$logo_src = wp_get_attachment_image_src($logo, "full")[0];
 
 		$content_top_percent = $content_top.'%';
+
+		$blurb_font_stripped = str_replace("``", '\"', $blurb_font);
 
 		$return = '';
 
@@ -385,7 +394,9 @@ class Travel_Better_VC_Shortcodes {
 
 				<div class="full-screen-featured-image-blurb-wrapper">
 					<div class="line-before-blurb"></div>
-					<span><?php echo $blurb_text; ?></span>
+					<span style="font-family:<?php echo $blurb_font_stripped; ?>">
+						<?php echo $blurb_text; ?>
+					</span>
 					<div class="line-after-blurb"></div>
 				</div>
 			</div>
