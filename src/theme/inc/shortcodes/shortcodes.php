@@ -15,14 +15,18 @@ class Travel_Better_Shortcodes {
    public function post_images_shortcode( $args ) {
 
       $attributes = shortcode_atts( array(
-          'img_urls'  => '',
-          'fullwidth' => 'true',
-          'columns'   => '1',
-          'row_height' => 'auto'
+          'img_urls'    => '',
+          'alt'         =>  '',
+          'fullwidth'   => 'true',
+          'columns'     => '1',
+          'row_height'  => 'auto'
       ), $args );
 
-      $no_whitespaces = preg_replace( '/\s*,\s*/', ',', filter_var( $attributes['img_urls'], FILTER_SANITIZE_STRING ) );
-      $url_array = explode( ',', $no_whitespaces );
+      $no_whitespaces_urls = preg_replace( '/\s*,\s*/', ',', filter_var( $attributes['img_urls'], FILTER_SANITIZE_STRING ) );
+      $url_array = explode( ',', $no_whitespaces_urls );
+
+      $no_whitespaces_alt = preg_replace( '/\s*,\s*/', ',', filter_var( $attributes['alt'], FILTER_SANITIZE_STRING ) );
+      $alt_array = explode( ',', $no_whitespaces_alt );
 
       $row_height = $attributes['row_height'].'vh';
 
@@ -36,11 +40,16 @@ class Travel_Better_Shortcodes {
 
         <div class="tb-post-images-grid" style="<?php echo 'grid-template-columns: repeat('.$attributes['columns'].', 1fr);'?>">
 
-          <?php foreach($url_array as $url) { ?>
+          <?php foreach($url_array as $key=>$url) { ?>
 
+            <?php
+
+            $alt = array_key_exists($key, $alt_array) ? $alt_array[$key] : '';
+
+            ?>
 
             <div class="tb-post-images-image" style="<?php echo 'height:'.$row_height.' '; ?>">
-                <img src="<?php echo $url; ?>">
+                <img src="<?php echo $url; ?>" alt="<?php echo $alt; ?>">
             </div>
 
           <?php } ?>
