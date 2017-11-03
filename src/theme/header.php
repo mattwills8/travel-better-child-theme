@@ -108,24 +108,24 @@ if( $header_layout == 'header-9' ) {
 <!-- Navigation -->
 <nav id="navigation" class="header-layout-top <?php echo esc_attr( $menu_style . ' ' . $header_class ); ?><?php if( get_theme_mod( 'penci_header_enable_padding' ) ): echo ' menu-item-padding'; endif; ?><?php if( get_theme_mod( 'penci_disable_sticky_header' ) ): echo ' penci-disable-sticky-nav';
 endif; /* Check for disable sticky header */ ?>">
+
+	<?php
+
+	/*
+	* Add logo
+	*/
+	if( $is_tb_header_set ) :
+	?>
+
+	<div class="header-logo-wrapper">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<img src="<?php echo esc_url( $tb_header_logo_src ); ?>">
+		</a>
+	</div>
+
+	<?php endif; ?>
+
 	<div class="container">
-
-		<?php
-
-		/*
-		* Add logo
-		*/
-		if( $is_tb_header_set ) :
-		?>
-
-		<div class="header-logo-wrapper">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<img src="<?php echo esc_url( $tb_header_logo_src ); ?>">
-			</a>
-		</div>
-
-		<?php endif; ?>
-
 
 		<div class="button-menu-mobile <?php echo esc_attr( $header_layout ); ?>"><i class="fa fa-bars"></i></div>
 		<?php
