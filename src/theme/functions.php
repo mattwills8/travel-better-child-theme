@@ -49,4 +49,14 @@ if ( ! function_exists( 'penci_all_fonts' ) ) {
 	}
 }
 
+
+/*
+* Theme Support
+*/
+
+function travel_better_add_support_for_posts() {
+	add_post_type_support( 'post', 'excerpt' );
+}
+add_action( 'init', 'travel_better_add_support_for_posts' , 100);
+
 ?>

@@ -375,7 +375,7 @@ class Travel_Better_VC_Shortcodes {
 
 		$content_top_percent = $content_top.'%';
 
-		$blurb_font_stripped = str_replace("``", '\"', $blurb_font);
+		$blurb_font_stripped = str_replace("``", '', $blurb_font);
 
 		$return = '';
 

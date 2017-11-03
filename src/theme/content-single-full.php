@@ -5,7 +5,12 @@
  *
  * @since 1.0
  */
+
+ $tb_post_excerpt_meta_field = get_post_meta( get_the_ID(), 'lead_text' );
+ $tb_post_excerpt = !empty($tb_post_excerpt_meta_field) ? $tb_post_excerpt_meta_field[0] : '';
 ?>
+
+
 <?php if( ! get_theme_mod( 'penci_move_title_bellow' ) ): ?>
 
 	<div class="header-wrapper">
@@ -15,6 +20,8 @@
 			<?php endif; ?>
 
 			<h1 class="post-title single-post-title"><?php the_title(); ?></h1>
+
+			<p class="tb-post-excerpt"><?php echo get_the_excerpt();  ?></p>
 
 			<?php if ( ! get_theme_mod( 'penci_single_meta_author' ) || ! get_theme_mod( 'penci_single_meta_date' ) || ! get_theme_mod( 'penci_single_meta_comment' ) ) : ?>
 				<div class="post-box-meta-single">
