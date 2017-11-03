@@ -69,7 +69,7 @@ class Travel_Better_Shortcodes {
 
 
     /**
-  	 * Register [caption]
+  	 * Register [caption][/caption]
   	 */
      public function caption_shortcode( $args, $content = null ) {
 
