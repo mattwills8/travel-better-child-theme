@@ -16,6 +16,7 @@ include( get_stylesheet_directory() . '/inc/shortcodes/shortcodes.php');
 $tb_shortcodes = new Travel_Better_Shortcodes();
 
 add_shortcode( 'post_images', array( $tb_shortcodes ,'post_images_shortcode') );
+add_shortcode( 'tb_caption', array( $tb_shortcodes ,'caption_shortcode') );
 
 
 /*

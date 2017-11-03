@@ -10,7 +10,7 @@
 class Travel_Better_Shortcodes {
 
 	/**
-	 * Register Shortcode taking list id as argument
+	 * Register [post_images]
 	 */
    public function post_images_shortcode( $args ) {
 
@@ -66,4 +66,34 @@ class Travel_Better_Shortcodes {
 
       return $return;
     }
+
+
+    /**
+  	 * Register [caption]
+  	 */
+     public function caption_shortcode( $args, $content = null ) {
+
+        $attributes = shortcode_atts( array(
+            'credits' => '',
+        ), $args );
+
+        $return = '';
+        // start element markup
+        ob_start();
+        ?>
+
+        <div class="tb-caption">
+          <p class="tb-caption-text"><?php echo $content; ?></p>
+          <p class="tb-caption-credits">Photo: <?php echo $attributes['credits']; ?></p>
+        </div>
+
+        <?php
+
+    		?>
+
+    		<?php
+        $return = ob_get_clean();
+
+        return $return;
+      }
 }
