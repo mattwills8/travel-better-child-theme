@@ -84,7 +84,7 @@ class Travel_Better_Shortcodes {
 
         <div class="tb-caption">
           <p class="tb-caption-text"><?php echo $content; ?></p>
-          <p class="tb-caption-credits">Photo: <?php echo $attributes['credits']; ?></p>
+          <p class="tb-caption-credits">Foto: <?php echo $attributes['credits']; ?></p>
         </div>
 
         <?php
