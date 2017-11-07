@@ -43,7 +43,7 @@ $tb_underline_src = get_stylesheet_directory_uri() . '/assets/img/underline.png'
 
 		<div class="post-author-button-wrapper">
 			<a href="<?php echo get_home_url().'/over-ons'; ?>">
-				<button class="tb-simple-btn">LEES MEER</button>
+				<button class="tb-simple-btn"><h5>LEES MEER</h5></button>
 			</a>
 		</div>
 
