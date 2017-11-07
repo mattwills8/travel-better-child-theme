@@ -10,6 +10,14 @@
       parent: '.single .container-single',
       child: '.post-image',
     },
+    {
+      parent: 'article.post',
+      child: '.post-pagination',
+    },
+    {
+      parent: 'article.post',
+      child: '.post-related',
+    },
   ];
 
   $(document).ready(function() {

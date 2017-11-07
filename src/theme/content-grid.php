@@ -1,6 +1,6 @@
 <?php
 /**
- * Template loop for gird style
+ * Template loop for grid style
  */
 
 $tb_underline_src = get_stylesheet_directory_uri() . '/assets/img/underline-small.png';
