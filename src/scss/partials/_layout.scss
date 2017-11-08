@@ -10,6 +10,15 @@
   object-fit: cover;
 }
 
+%pageNoSidebarContent {
+  margin: 25px auto;
+  width: 750px;
+
+  @media screen and (max-width: 960px) {
+    width: auto;
+  }
+}
+
 .margin-top-30 {
   margin-top: 30px;
 }

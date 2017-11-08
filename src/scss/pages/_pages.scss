@@ -1,0 +1,10 @@
+
+.page {
+
+  .container-single-page-full-width {
+
+    article.page {
+      @extend %pageNoSidebarContent;
+    }
+  }
+}

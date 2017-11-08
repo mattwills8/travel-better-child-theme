@@ -2,12 +2,7 @@
 .single {
 
   .header-standard, .post {
-    margin: 25px auto;
-    width: 750px;
-
-    @media screen and (max-width: 960px) {
-      width: auto;
-    }
+    @extend %pageNoSidebarContent;
   }
 
   //title area
