@@ -74,7 +74,8 @@
   // featured image
 
   .post-image {
-    height: $vhMinusHeader;
+    height: auto;
+    max-height: $vhMinusHeader;
 
     img {
       @extend %imgFitContainerWidth;
