@@ -8,15 +8,26 @@ include( get_stylesheet_directory() . '/inc/customizer/tb_settings.php');
 
 include( get_stylesheet_directory() . '/inc/vc/vc.php');
 
-include( get_stylesheet_directory() . '/inc/shortcodes/shortcodes.php');
+
 
 /*
 * Shortcodes
 */
+include( get_stylesheet_directory() . '/inc/shortcodes/shortcodes.php');
+
 $tb_shortcodes = new Travel_Better_Shortcodes();
 
 add_shortcode( 'post_images', array( $tb_shortcodes ,'post_images_shortcode') );
 add_shortcode( 'tb_caption', array( $tb_shortcodes ,'caption_shortcode') );
+
+/*
+* Taxonomy
+*/
+include( get_stylesheet_directory() . '/inc/taxonomies/CustomTax.php');
+
+$tb_tax = new Travel_Better_Custom_Tax();
+
+add_action( 'init',  array( $tb_tax, 'add_custom_tax' ) );
 
 
 /*
