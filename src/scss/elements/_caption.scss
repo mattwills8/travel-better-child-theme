@@ -1,18 +1,23 @@
+%caption-base {
+  font-size: 0.9em;
+  font-style: italic;
+}
 
 .tb-caption {
-
   border-left: 2px solid $primaryColor;
   padding: 0 15px;
   width: 100%;
-  font-style: italic;
 
   .tb-caption-text {
+    @extend %caption-base;
     margin-bottom: 5px;
+    font-weight: bold;
     color: rgba(100,100,100,1);
   }
 
   .tb-caption-credits {
-    font-size: 0.9em;
+    @extend %caption-base;
+    font-weight: normal;
     color: rgba(200,200,200,1);
   }
 }
@@ -22,9 +27,14 @@ div.wp-caption {
   .wp-caption-text {
     @extend p;
     @extend .tb-caption;
+    @extend %caption-base;
     position: static;
     margin-top: 17px;
-    font-size: 0.9em;
+    padding: {
+      top: 3px;
+      bottom: 3px;
+    }
+    font-weight: normal;
     text-align: left;
     color: rgba(200,200,200,1);
     background-color: white;
@@ -38,7 +48,6 @@ div.wp-caption {
       display: inline-block;
       margin-bottom: 5px;
       width: 100%;
-      font-weight: normal;
 
       &::after {
         content: '';

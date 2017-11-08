@@ -4,7 +4,7 @@
 
     // need to set the font size of the media gallery captions dynamically
     $('.wp-caption-text strong').css({
-      'font-size': $('.inner-post-entry p').css('font-size'),
+      'font-size': $('.wp-caption-text').css('font-size'),
     });
 
     // we need to remove the margin under the featured image if the first elmnt in the article is a caption
