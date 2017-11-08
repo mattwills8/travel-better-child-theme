@@ -1,9 +1,9 @@
 
-.page {
+.page, .archive {
 
   .container-single-page-full-width {
 
-    article.page {
+    article.page, article.post {
       @extend %pageNoSidebarContent;
     }
   }
