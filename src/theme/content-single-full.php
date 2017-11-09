@@ -8,6 +8,25 @@
 
  $tb_post_excerpt_meta_field = get_post_meta( get_the_ID(), 'lead_text' );
  $tb_post_excerpt = !empty($tb_post_excerpt_meta_field) ? $tb_post_excerpt_meta_field[0] : '';
+
+ $tb_photographer = function() {
+
+   $tb_photographer_field = get_post_meta( get_the_ID(), 'article_photographer' );
+
+   if( !empty($tb_photographer_field) ) {
+     $photographer_term_id = $tb_photographer_field[0];
+
+     $photographer = get_terms( array(
+       'taxonomy' => 'tb-photographer',
+       'include'  =>  array($photographer_term_id),
+       'hide_empty' => false,
+     ));
+
+     return is_wp_error( $photographer ) ?
+      '' :
+      '<span class="author-post photographer-post"><span>Photographer: <a class="author-url photographer-url" href="'.get_term_link($photographer[0]).'">'.$photographer[0]->name.'</a></span></span>';
+   }
+ }
 ?>
 
 
@@ -27,6 +46,7 @@
 				<div class="post-box-meta-single">
 					<?php if ( ! get_theme_mod( 'penci_single_meta_author' ) ) : ?>
 						<span class="author-post"><span><?php echo penci_get_setting('penci_trans_by'); ?> <a class="author-url" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a></span></span>
+            <?php echo $tb_photographer(); ?>
 					<?php endif; ?>
 					<?php if ( ! get_theme_mod( 'penci_single_meta_date' ) ) : ?>
 						<span><?php the_time( get_option('date_format') ); ?></span>

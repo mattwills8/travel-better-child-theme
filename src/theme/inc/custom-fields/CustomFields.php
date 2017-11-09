@@ -25,9 +25,12 @@ class Travel_Better_Custom_Fields {
         ) );
 
         if( ! is_wp_error( $terms ) ) {
-          return array_map( function($obj) {
-            return $obj->name;
-          } , $terms);
+          $choices = [];
+          foreach($terms as $term) {
+            $choices[$term->term_id] = $term->name;
+          }
+
+          return $choices;
         }
         return [];
       };
