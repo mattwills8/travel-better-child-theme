@@ -21,6 +21,15 @@ add_shortcode( 'post_images', array( $tb_shortcodes ,'post_images_shortcode') );
 add_shortcode( 'tb_caption', array( $tb_shortcodes ,'caption_shortcode') );
 
 /*
+* Custom Fields
+*/
+include( get_stylesheet_directory() . '/inc/custom-fields/CustomFields.php');
+
+$tb_fields = new Travel_Better_Custom_Fields();
+
+add_action( 'init',  array( $tb_fields, 'add_photographer_field_group' ) , 50);
+
+/*
 * Taxonomy
 */
 include( get_stylesheet_directory() . '/inc/taxonomies/CustomTax.php');

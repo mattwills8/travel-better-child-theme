@@ -33,7 +33,7 @@ class Travel_Better_Custom_Tax {
 
     // create photographer taxonomy
   	register_taxonomy(
-  		'photographers',
+  		'tb-photographer',
   		[
         'post',
         'page',
@@ -45,7 +45,7 @@ class Travel_Better_Custom_Tax {
     		'show_admin_column'     => true,
     		'update_count_callback' => '_update_post_term_count',
     		'query_var'             => true,
-    		'rewrite'               => array( 'slug' => 'photographers' ),
+    		'rewrite'               => array( 'slug' => 'tb-photographer' ),
     	)
   	);
 
