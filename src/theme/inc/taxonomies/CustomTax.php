@@ -45,7 +45,8 @@ class Travel_Better_Custom_Tax {
     		'show_admin_column'     => true,
     		'update_count_callback' => '_update_post_term_count',
     		'query_var'             => true,
-    		'rewrite'               => array( 'slug' => 'tb-photographer' ),
+				'has_archive'						=> true,
+    		'rewrite'               => array( 'slug' => 'photographer' ),
     	)
   	);
 

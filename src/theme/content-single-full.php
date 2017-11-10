@@ -24,7 +24,7 @@
 
      return is_wp_error( $photographer ) ?
       '' :
-      '<span class="author-post photographer-post"><span>Photographer: <a class="author-url photographer-url" href="'.get_term_link($photographer[0]).'">'.$photographer[0]->name.'</a></span></span>';
+      '<span class="author-post photographer-post"><span>fotograaf: <a class="author-url photographer-url" href="'.get_term_link($photographer[0]).'">'.$photographer[0]->name.'</a></span></span>';
    }
  }
 ?>
