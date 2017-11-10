@@ -80,70 +80,7 @@
     }
   }
 
-  // post entry
-
-  .post-entry {
-  }
-
-  // author info
-
-  .post-author {
-    padding-bottom: 0;
-
-    .author-img {
-      margin: 0;
-      width: 100%;
-      text-align: center;
-
-      img {
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-      }
-    }
-
-    .tb-underline-wrapper {
-      @extend %centerElement;
-      @extend %tb-underline-wrapper;
-      width: 30%;
-    }
-
-    .author-content {
-      margin: 20px auto;
-      width: 100%;
-      text-align: center;
-
-      h5 {
-        a {
-          margin-top: 15px;
-        }
-      }
-
-      p {
-        padding: 0 20%;
-
-        @media screen and (max-width: 500px) {
-          padding: 0;
-        }
-      }
-
-      .author-social {
-
-        &:hover {
-          color: $primaryColor;
-        }
-      }
-
-      .post-author-button-wrapper {
-        width: 100%;
-
-        h5 {
-          margin-bottom: 0;
-          color: white;
-        }
-      }
-    }
-  }
+  // pagination
 
   .post-pagination {
     padding: 20px;
