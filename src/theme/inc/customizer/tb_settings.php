@@ -22,6 +22,7 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	 * @package Wordpress
 	 */
 
+	// Travel Better
 	$wp_customize->add_setting( 'travel_better_upload_header_logo', array(
  		'default'           => '',
  	) );
@@ -42,6 +43,17 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'default'           => '',
 	) );
 
+	// Translations
+	$wp_customize->add_setting( 'penci_trans_you_may_also_like', array(
+		'default'           => 'You May Also Like',
+		'sanitize_callback' => 'sanitize_text_field'
+	) );
+
+	$wp_customize->add_setting( 'penci_trans_photographer', array(
+		'default'           => 'Photographer',
+		'sanitize_callback' => 'sanitize_text_field'
+	) );
+
 
   /**
 	 * Add Controls
@@ -49,6 +61,7 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	 * @package Wordpress
 	 */
 
+	// Travel Better
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'travel_better_upload_header_logo', array(
 		'label'    => 'Upload Logo For Header',
 		'section'  => 'travel_better_new_section_extra_settings',
@@ -97,6 +110,24 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'section'  => 'travel_better_new_section_extra_settings',
 		'settings' => 'travel_better_upload_footer_background',
 		'priority' => 101
+	) ) );
+
+
+	// Translations
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'trans_you_may_also_like', array(
+		'label'    => 'Text: "You May Also Like"',
+		'section'  => 'pencidesign_new_section_transition_lang',
+		'settings' => 'penci_trans_you_may_also_like',
+		'type'     => 'text',
+		'priority' => 1
+	) ) );
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'trans_photographer', array(
+		'label'    => 'Text: "Photographer"',
+		'section'  => 'pencidesign_new_section_transition_lang',
+		'settings' => 'penci_trans_photographer',
+		'type'     => 'text',
+		'priority' => 1
 	) ) );
 }
 
