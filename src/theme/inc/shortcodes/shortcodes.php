@@ -28,7 +28,9 @@ class Travel_Better_Shortcodes {
       $no_whitespaces_alt = preg_replace( '/\s*,\s*/', ',', filter_var( $attributes['alt'], FILTER_SANITIZE_STRING ) );
       $alt_array = explode( ',', $no_whitespaces_alt );
 
-      $row_height = $attributes['row_height'].'vh';
+      $row_height = $attributes['row_height'] === 'auto' ?
+        'unset'  : 
+        $attributes['row_height'].'vh';
 
       $return = '';
       // start element markup
@@ -48,7 +50,7 @@ class Travel_Better_Shortcodes {
 
             ?>
 
-            <div class="tb-post-images-image" style="<?php echo 'height:'.$row_height.' '; ?>">
+            <div class="tb-post-images-image" style="<?php echo 'max-height:'.$row_height.' '; ?>">
                 <img src="<?php echo $url; ?>" alt="<?php echo $alt; ?>">
             </div>
 

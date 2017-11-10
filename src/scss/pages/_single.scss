@@ -74,6 +74,9 @@
 
     img {
       @extend %imgFitContainerWidth;
+      width: 100%;
+      min-width: unset;
+      max-width: 1600px;
     }
   }
 
