@@ -16,6 +16,8 @@
     .mc4wp-form {
 
       .msubmit input[type="submit"] {
+        margin: 0 !important;
+        padding: 0 20px !important;
         background-color: $primaryColor;
       }
 

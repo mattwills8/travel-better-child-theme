@@ -19,3 +19,24 @@
     color: white;
   }
 }
+
+%tb-simple-btn-important {
+  margin: 10px !important;
+  border: none !important;
+  padding: 10px 15px !important;
+  background-color: $primaryColor !important;
+  color: white !important;
+  font-weight: bold !important;
+  font-size: 0.85em !important;
+  text-transform: uppercase !important;
+
+  &:hover {
+    background-color: $primaryColorHover !important;
+    cursor: pointer !important;
+  }
+
+  h5 {
+    margin-bottom: 0 !important;
+    color: white !important;
+  }
+}
