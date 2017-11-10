@@ -25,7 +25,9 @@ class Travel_Better_Custom_Fields {
         ) );
 
         if( ! is_wp_error( $terms ) ) {
-          $choices = [];
+          $choices = [
+            'none' => 'None',
+          ];
           foreach($terms as $term) {
             $choices[$term->term_id] = $term->name;
           }

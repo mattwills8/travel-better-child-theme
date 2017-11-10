@@ -13,7 +13,7 @@
 
    $tb_photographer_field = get_post_meta( get_the_ID(), 'article_photographer' );
 
-   if( !empty($tb_photographer_field) ) {
+   if( !empty($tb_photographer_field) &&  $tb_photographer_field[0] !== 'none' ) {
      $photographer_term_id = $tb_photographer_field[0];
 
      $photographer = get_terms( array(
@@ -25,6 +25,8 @@
      return is_wp_error( $photographer ) ?
       '' :
       '<span class="author-post photographer-post"><span>fotograaf: <a class="author-url photographer-url" href="'.get_term_link($photographer[0]).'">'.$photographer[0]->name.'</a></span></span>';
+   } else {
+     return '';
    }
  }
 ?>
