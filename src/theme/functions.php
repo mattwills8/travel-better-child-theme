@@ -80,4 +80,11 @@ function travel_better_add_support_for_posts() {
 }
 add_action( 'init', 'travel_better_add_support_for_posts' , 100);
 
+function travel_better_change_default_query( $query ) {
+if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
+        $query->set( 'posts_per_page', 12 );
+    }
+}
+add_action( 'pre_get_posts', 'travel_better_change_default_query' );
+
 ?>
