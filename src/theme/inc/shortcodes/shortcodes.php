@@ -29,7 +29,7 @@ class Travel_Better_Shortcodes {
       $alt_array = explode( ',', $no_whitespaces_alt );
 
       $row_height = $attributes['row_height'] === 'auto' ?
-        'unset'  : 
+        'auto'  :
         $attributes['row_height'].'vh';
 
       $return = '';
@@ -50,7 +50,7 @@ class Travel_Better_Shortcodes {
 
             ?>
 
-            <div class="tb-post-images-image" style="<?php echo 'max-height:'.$row_height.' '; ?>">
+            <div class="tb-post-images-image" style="<?php echo 'height:'.$row_height.' '; ?>">
                 <img src="<?php echo $url; ?>" alt="<?php echo $alt; ?>">
             </div>
 
