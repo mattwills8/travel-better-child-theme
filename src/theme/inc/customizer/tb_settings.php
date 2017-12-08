@@ -15,6 +15,12 @@ function travel_better_register_theme_customizer( $wp_customize ) {
     'priority'    => 1,
 	) );
 
+	$wp_customize->add_section( 'travel_better_new_section_signup', array(
+		'title'       => 'Travel Better Signup Form',
+		'description' => 'Custom settings for the footer signup form',
+    'priority'    => 1,
+	) );
+
 
 	/**
 	 * Add settings
@@ -56,6 +62,19 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'penci_trans_photographer', array(
 		'default'           => 'Photographer',
 		'sanitize_callback' => 'sanitize_text_field'
+	) );
+
+	// Signup
+	$wp_customize->add_setting( 'travel_better_signup_form_mailchimp_cf7', array(
+		'default'           => '',
+	) );
+
+	$wp_customize->add_setting( 'travel_better_signup_form_shortcode', array(
+		'default'           => '',
+	) );
+
+	$wp_customize->add_setting( 'travel_better_signup_form_title', array(
+		'default'           => 'DUURZAAM REISNIEUWS',
 	) );
 
 
@@ -140,6 +159,35 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 		'settings' => 'penci_trans_photographer',
 		'type'     => 'text',
 		'priority' => 1
+	) ) );
+
+	// Signup Form
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_signup_form_mailchimp_cf7', array(
+		'label'    => 'Use Mailchimp Form or Contact Form 7 In Footer?',
+		'section'  => 'travel_better_new_section_signup',
+		'settings' => 'travel_better_signup_form_mailchimp_cf7',
+		'type'     => 'radio',
+		'choices'  => array(
+        'mailchimp'   => __( 'Mailchimp' ),
+        'cf7'  => __( 'Contact Form 7' )
+    ),
+		'priority' => 1
+	)));
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_signup_form_shortcode', array(
+		'label'    => 'Contact Form 7 Shortcode',
+		'section'  => 'travel_better_new_section_signup',
+		'settings' => 'travel_better_signup_form_shortcode',
+		'type'     => 'text',
+		'priority' => 2
+	) ) );
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'travel_better_signup_form_title', array(
+		'label'    => 'Contact Form 7 Signup Title',
+		'section'  => 'travel_better_new_section_signup',
+		'settings' => 'travel_better_signup_form_title',
+		'type'     => 'text',
+		'priority' => 3
 	) ) );
 }
 
