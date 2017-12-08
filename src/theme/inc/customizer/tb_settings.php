@@ -74,7 +74,7 @@ function travel_better_register_theme_customizer( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'travel_better_signup_form_title', array(
-		'default'           => 'DUURZAAM REISNIEUWS',
+		'default'           => '',
 	) );
 
 

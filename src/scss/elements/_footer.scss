@@ -15,6 +15,25 @@
 
     .mc4wp-form {
 
+      .mc4wp-form-fields {
+        margin: 0;
+      }
+
+      div.wpcf7-response-output {
+        background-color: white;
+        color: #5c5c5e;
+        font-size: 18px;
+        font-style: italic;
+
+        &.wpcf7-mail-sent-ok {
+          border-color: $primaryColor;
+        }
+      }
+
+      span.wpcf7-not-valid-tip {
+        margin-top: 10px;
+      }
+
       .msubmit input[type="submit"] {
         margin: 0 !important;
         padding: 0 20px !important;

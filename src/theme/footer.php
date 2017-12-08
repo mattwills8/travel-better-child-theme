@@ -5,7 +5,6 @@
  * @package Wordpress
  * @since   1.0
  */
-
 $tb_upload_footer_backgrond = get_theme_mod( 'travel_better_upload_footer_background' );
 $use_tb_footer_background = $tb_upload_footer_backgrond !== '';
 
@@ -79,7 +78,16 @@ endif; /* End check if disable footer widget area */  ?>
  */
 if ( is_active_sidebar( 'footer-signup-form' ) ): ?>
 	<div class="footer-subscribe">
-		<?php dynamic_sidebar( 'footer-signup-form' ); ?>
+		<?php
+		if( get_theme_mod( 'travel_better_signup_form_mailchimp_cf7' ) === 'mailchimp' ) {
+			dynamic_sidebar( 'footer-signup-form' );
+		}
+		if( get_theme_mod( 'travel_better_signup_form_mailchimp_cf7' ) === 'cf7' ) { ?>
+			<div class="widget cf7-footer-subscribe">
+				<h4 class="footer-subscribe-title"><?php echo get_theme_mod( 'travel_better_signup_form_title' ); ?></h4>
+				<?php echo do_shortcode( get_theme_mod( 'travel_better_signup_form_shortcode' ) ); ?>
+			</div>
+		<?php } ?>
 	</div>
 <?php endif; ?>
 

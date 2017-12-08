@@ -89,4 +89,15 @@ if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
 }
 add_action( 'pre_get_posts', 'travel_better_change_default_query' );
 
+
+/*
+* Filters
+*/
+
+function tb_cf7_add_custom_class($error, $name, $instance) {
+$error=str_replace("class=\"","class=\"mdes ", $error);
+return $error;
+}
+add_filter('wpcf7_validation_error', 'tb_cf7_add_custom_class', 10, 3);
+
 ?>
